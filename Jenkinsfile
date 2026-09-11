@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                echo 'Checking out source code from Git repository...'
+                // Code is automatically fetched if repository is linked in Jenkins
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        
+        stage('Train & Test Model') {
+            steps {
+                sh 'python train.py'
+                sh 'pytest test_model.py'
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ml-ops-app:v1 .'
+                echo 'ML Model successfully containerized!'
+            }
+        }
+    }
+}
