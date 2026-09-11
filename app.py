@@ -13,7 +13,7 @@ else:
 
 @app.route('/', methods=['GET'])
 def home():
-    return "ML Model Deployment API is Live! Send POST requests to /predict"
+    return "ML Model Deployment API is Live! Send POST requests to /predict. stuti"
 
 @app.route('/predict', methods=['POST'])
 def predict():
